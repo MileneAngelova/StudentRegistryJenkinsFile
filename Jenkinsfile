@@ -11,10 +11,20 @@ pipeline{
             bat 'npm test'
          }
         }
-        stage("Deploying"){
+        stage("Deploy to Staging"){
+           steps {
+             echo 'Deploying to Stage...'
+            }
+        }
+        stage("Approval for Production Deploy"){
             steps {
-                echo 'Deploying'
-                }
+             input message: 'Approve Deploy'
+            }
+        }
+         stage("Deploy to Production"){
+            steps {
+                echo 'Deploying to Production...'
+            }
         }
     }
 }
